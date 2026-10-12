@@ -13,7 +13,6 @@ import { BrideVsGroomGame } from '@/components/BrideVsGroomGame';
 import { QuirkyFAQ } from '@/components/QuirkyFAQ';
 import { RSVPSection } from '@/components/RSVPSection';
 import { FinalScene } from '@/components/FinalScene';
-import { AudioController } from '@/components/AudioController';
 import { PetalAtmosphere } from '@/components/PetalAtmosphere';
 
 export default function Home() {
@@ -25,10 +24,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen w-full bg-warm-ivory selection:bg-butter-yellow selection:text-deep-maroon">
-      {/* 1. Discrete Circular Audio Controller */}
-      <AudioController started={isEntered} />
-
-      {/* 2. Atmospheric Drifting Bougainvillea Petals */}
+      {/* 1. Atmospheric Drifting Bougainvillea Petals */}
       <PetalAtmosphere />
 
       {/* 3. Section 01: Devotional Ganpati Opening */}

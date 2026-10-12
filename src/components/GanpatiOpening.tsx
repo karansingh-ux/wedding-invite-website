@@ -3,7 +3,6 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
-import { getSoundEngine } from '@/utils/audio';
 
 interface GanpatiOpeningProps {
   onEnter: () => void;
@@ -18,16 +17,6 @@ export function GanpatiOpening({ onEnter, isEntered }: GanpatiOpeningProps) {
   const startCinematicTransition = useCallback(() => {
     if (hasTriggeredRef.current) return;
     hasTriggeredRef.current = true;
-
-    // Start ambient soundtrack upon first user interaction or auto-trigger
-    try {
-      const soundEngine = getSoundEngine();
-      if (soundEngine) {
-        soundEngine.startAmbient();
-      }
-    } catch {
-      // Safe autoplay catch
-    }
 
     if (!containerRef.current || !imageWrapperRef.current) {
       onEnter();

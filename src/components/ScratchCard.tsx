@@ -3,7 +3,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import { Sparkles, Check, Hand } from 'lucide-react';
-import { getSoundEngine } from '@/utils/audio';
 
 interface ScratchCardProps {
   onRevealed?: () => void;
@@ -35,12 +34,6 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
     setIsRevealed(true);
     if (typeof window !== 'undefined') {
       localStorage.setItem('wedding_scratch_revealed', 'true');
-    }
-
-    try {
-      getSoundEngine().playTempleBell();
-    } catch {
-      // Audio fallback
     }
 
     try {
