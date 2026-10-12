@@ -1,99 +1,114 @@
 'use client';
 
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 
 interface GanpatiOpeningProps {
   onEnter: () => void;
   isEntered: boolean;
+  onExitStart?: () => void;
 }
 
-export function GanpatiOpening({ onEnter, isEntered }: GanpatiOpeningProps) {
+export function GanpatiOpening({ onEnter, isEntered, onExitStart }: GanpatiOpeningProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageWrapperRef = useRef<HTMLDivElement>(null);
-  const hasTriggeredRef = useRef(false);
-
-  const startCinematicTransition = useCallback(() => {
-    if (hasTriggeredRef.current) return;
-    hasTriggeredRef.current = true;
-
-    if (!containerRef.current || !imageWrapperRef.current) {
-      onEnter();
-      return;
-    }
-
-    // GSAP cinematic camera transition: subtle upward movement + scale/recede + dissolve
-    const tl = gsap.timeline({
-      onComplete: () => {
-        onEnter();
-      },
-    });
-
-    tl.to(imageWrapperRef.current, {
-      y: '-90%',
-      scale: 1.05,
-      opacity: 0,
-      duration: 1.4,
-      ease: 'power3.inOut',
-    });
-
-    tl.to(
-      containerRef.current,
-      {
-        opacity: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-      },
-      '-=0.4'
-    );
-  }, [onEnter]);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  // Keep latest callback references safe from re-render closures
+  const onEnterRef = useRef(onEnter);
+  onEnterRef.current = onEnter;
+  const onExitStartRef = useRef(onExitStart);
+  onExitStartRef.current = onExitStart;
 
   useEffect(() => {
     if (isEntered) return;
 
-    // 1. Initial calm presence on the master Ganpati image
-    if (imageWrapperRef.current) {
-      gsap.fromTo(
+    // Safety fallback: guarantee website is always revealed even if animation is interrupted
+    const fallbackTimer = setTimeout(() => {
+      onExitStartRef.current?.();
+      onEnterRef.current();
+    }, 4200);
+
+    const ctx = gsap.context(() => {
+      if (!containerRef.current || !imageWrapperRef.current) {
+        onEnterRef.current();
+        return;
+      }
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          onEnterRef.current();
+        },
+      });
+
+      timelineRef.current = tl;
+
+      // 1. Initial gentle entrance of Lord Ganesha
+      tl.fromTo(
         imageWrapperRef.current,
-        { scale: 1.03, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.6, ease: 'power2.out' }
+        { scale: 1.04, opacity: 0 },
+        { scale: 1.0, opacity: 1, duration: 0.85, ease: 'power2.out' }
       );
-    }
 
-    // 2. Automatic cinematic transition after 2.5 seconds of calm presence
-    const timer = setTimeout(() => {
-      startCinematicTransition();
-    }, 2500);
+      // 2. Calm reverent contemplation hold
+      tl.to({}, { duration: 1.25 });
 
-    // Also transition immediately if user attempts to scroll or touch
-    const handleUserInteraction = () => {
-      startCinematicTransition();
-    };
+      // 3. Coordinated exit milestone (wakes up ResortArrival behind preloader)
+      tl.addLabel('exit');
+      tl.call(() => {
+        onExitStartRef.current?.();
+      });
 
-    window.addEventListener('wheel', handleUserInteraction, { passive: true });
-    window.addEventListener('touchmove', handleUserInteraction, { passive: true });
+      // 4. Smooth dissolve & elegant upward camera float
+      tl.to(imageWrapperRef.current, {
+        y: -60,
+        scale: 1.02,
+        opacity: 0,
+        duration: 1.0,
+        ease: 'power2.inOut',
+      });
+
+      tl.to(
+        containerRef.current,
+        {
+          opacity: 0,
+          duration: 1.0,
+          ease: 'power2.inOut',
+        },
+        '<'
+      );
+    }, containerRef);
 
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('wheel', handleUserInteraction);
-      window.removeEventListener('touchmove', handleUserInteraction);
+      clearTimeout(fallbackTimer);
+      ctx.revert();
     };
-  }, [isEntered, startCinematicTransition]);
+  }, [isEntered]);
+
+  // Tap/click skips directly to exit
+  const handleUserTap = () => {
+    if (!timelineRef.current) {
+      onExitStartRef.current?.();
+      onEnterRef.current();
+      return;
+    }
+    const tl = timelineRef.current;
+    const exitTime = tl.labels['exit'] ?? 2.1;
+    if (tl.time() < exitTime) {
+      tl.seek(exitTime);
+    }
+  };
 
   if (isEntered) return null;
 
   return (
     <div
       ref={containerRef}
-      onClick={startCinematicTransition}
-      className="fixed inset-0 z-40 flex items-center justify-center overflow-hidden bg-[#2A0D11] cursor-pointer select-none"
+      onClick={handleUserTap}
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-warm-ivory cursor-pointer select-none"
       aria-label="Ganpati Devotional Opening"
     >
-      {/* Background radial atmosphere */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(246,223,160,0.15)_0%,rgba(100,31,39,0.85)_65%,rgba(42,13,17,1)_100%)] pointer-events-none" />
-
-      {/* Dominant Master Ganpati Image (Responsive mobile-first canvas) */}
+      {/* Dominant Master Ganpati Image (Responsive canvas) */}
       <div
         ref={imageWrapperRef}
         className="relative w-full h-full max-w-[540px] mx-auto flex items-center justify-center will-change-transform"
@@ -104,11 +119,8 @@ export function GanpatiOpening({ onEnter, isEntered }: GanpatiOpeningProps) {
           fill
           priority
           sizes="(max-width: 768px) 100vw, 540px"
-          className="object-cover object-center select-none"
+          className="object-cover object-center select-none pointer-events-none"
         />
-
-        {/* Soft edge blending vignettes */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2A0D11]/90 via-transparent to-[#2A0D11]/50 pointer-events-none" />
       </div>
     </div>
   );

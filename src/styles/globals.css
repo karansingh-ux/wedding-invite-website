@@ -1,5 +1,5 @@
-/* Curated Editorial Typography: Instrument Serif + Satoshi / DM Sans (-2% Tracking) */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Instrument+Serif:ital@0;1&display=swap');
+/* Curated Editorial Typography: Instrument Serif + Satoshi / DM Sans + Pinyon Script */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Alex+Brush&display=swap');
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
 
 @tailwind base;
@@ -10,6 +10,8 @@
   /* Instrument Serif (-2% kerning) for all titles and headings */
   --font-display-active: 'Instrument Serif', Georgia, serif;
   --font-editorial-active: 'Instrument Serif', Georgia, serif;
+  /* Delicate romantic handwritten script for emotional captions */
+  --font-script: 'Pinyon Script', 'Alex Brush', cursive;
   /* Satoshi / DM Sans (-2% kerning) for body copy & metadata */
   --font-body-active: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --tracking-title: -0.02em; /* Strictly -2% letter spacing */
@@ -76,6 +78,11 @@ html.lenis, html.lenis body {
   font-size: clamp(1.125rem, 1.8vw, 1.625rem);
   line-height: 1.35;
   letter-spacing: -0.02em;
+}
+
+.font-script {
+  font-family: var(--font-script), 'Pinyon Script', 'Alex Brush', cursive;
+  letter-spacing: 0.01em;
 }
 
 .font-body-refined {

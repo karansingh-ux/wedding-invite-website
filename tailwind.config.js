@@ -24,6 +24,7 @@ module.exports = {
       fontFamily: {
         display: ['var(--font-display-active)', 'Georgia', 'serif'],
         editorial: ['var(--font-editorial-active)', 'Georgia', 'serif'],
+        script: ['var(--font-script)', 'Pinyon Script', 'Alex Brush', 'cursive'],
         sans: ['var(--font-body-active)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       spacing: {
@@ -47,6 +48,14 @@ module.exports = {
         'lg': '1024px',
         'xl': '1200px',
         '2xl': '1440px',
+      },
+      boxShadow: {
+        'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02)',
+        'DEFAULT': '0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 4px 12px -2px rgba(0, 0, 0, 0.03)',
+        'md': '0 2px 6px -1px rgba(0, 0, 0, 0.03), 0 6px 16px -2px rgba(0, 0, 0, 0.04)',
+        'lg': '0 4px 12px -2px rgba(0, 0, 0, 0.03), 0 12px 24px -4px rgba(0, 0, 0, 0.04)',
+        'xl': '0 6px 16px -4px rgba(0, 0, 0, 0.03), 0 16px 36px -6px rgba(0, 0, 0, 0.05)',
+        '2xl': '0 4px 16px -2px rgba(0, 0, 0, 0.03), 0 18px 42px -6px rgba(0, 0, 0, 0.05)',
       },
     },
   },

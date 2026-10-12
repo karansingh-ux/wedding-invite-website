@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
-import { Sparkles, Check, Hand } from 'lucide-react';
+import { Sparkles, Check } from 'lucide-react';
 
 interface ScratchCardProps {
   onRevealed?: () => void;
@@ -19,7 +19,7 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
   // Check persisted state in localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('wedding_scratch_revealed');
+      const saved = localStorage.getItem('wedding_secret_note_revealed');
       if (saved === 'true') {
         setIsRevealed(true);
         isRevealedRef.current = true;
@@ -33,7 +33,7 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
     isRevealedRef.current = true;
     setIsRevealed(true);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('wedding_scratch_revealed', 'true');
+      localStorage.setItem('wedding_secret_note_revealed', 'true');
     }
 
     try {
@@ -112,25 +112,25 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
 
     // 4. Central embossed gold foil coin / seal badge
     const midX = w / 2;
-    const midY = h / 2 - 8;
+    const midY = h / 2 - 12;
 
     ctx.save();
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.08)';
     ctx.shadowBlur = 4;
-    ctx.shadowOffsetY = 2;
+    ctx.shadowOffsetY = 1;
 
     // Seal outer ring
     ctx.beginPath();
-    ctx.arc(midX, midY, 26, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255, 248, 234, 0.85)';
+    ctx.arc(midX, midY, 24, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 248, 234, 0.88)';
     ctx.fill();
     ctx.strokeStyle = '#AA7C11';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     ctx.stroke();
 
     // Seal inner ring
     ctx.beginPath();
-    ctx.arc(midX, midY, 22, 0, Math.PI * 2);
+    ctx.arc(midX, midY, 20, 0, Math.PI * 2);
     ctx.strokeStyle = '#D4AF37';
     ctx.lineWidth = 1;
     ctx.stroke();
@@ -138,22 +138,49 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
 
     // Central coin sparkle / star symbol
     ctx.fillStyle = '#641F27';
-    ctx.font = 'bold 18px system-ui, sans-serif';
+    ctx.font = 'bold 15px system-ui, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('✦', midX, midY);
 
     // 5. Card text prompt on foil
     ctx.fillStyle = '#641F27';
-    ctx.font = '700 13px system-ui, -apple-system, sans-serif';
+    ctx.font = '700 13px Satoshi, -apple-system, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('SECRET EVENT PASS', midX, midY + 42);
+    ctx.fillText('A NOTE FROM US', midX, midY + 38);
 
     ctx.fillStyle = '#4A2A18';
-    ctx.font = 'italic 12px Georgia, serif';
-    ctx.fillText('Rub & scratch gold foil with finger to reveal', midX, midY + 59);
+    ctx.font = 'italic 12.5px "Instrument Serif", Georgia, serif';
+    ctx.fillText('Scratch to reveal a little message.', midX, midY + 54);
 
     let clearedCount = 0;
+
+    const checkScratchedPercentage = () => {
+      if (isRevealedRef.current) return;
+      try {
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imgData.data;
+        const sampleCount = 500;
+        const step = Math.floor(data.length / (sampleCount * 4));
+        let transparentCount = 0;
+
+        for (let i = 0; i < sampleCount; i++) {
+          const alphaIndex = i * step * 4 + 3;
+          if (data[alphaIndex] < 64) {
+            transparentCount++;
+          }
+        }
+
+        const ratio = transparentCount / sampleCount;
+        if (ratio >= 0.65) {
+          handleReveal();
+        }
+      } catch {
+        if (clearedCount > 35) {
+          handleReveal();
+        }
+      }
+    };
 
     const scratch = (clientX: number, clientY: number) => {
       setHasStartedScratching(true);
@@ -163,18 +190,20 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
 
       ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
-      ctx.arc(x, y, 26, 0, Math.PI * 2);
+      ctx.arc(x, y, 28, 0, Math.PI * 2);
       ctx.fill();
 
       clearedCount += 1;
-      // Auto-reveal after enough interactive scratch strokes
-      if (clearedCount > 28 && !isRevealedRef.current) {
-        handleReveal();
+      if (clearedCount % 8 === 0) {
+        checkScratchedPercentage();
       }
     };
 
     const onMouseDown = () => setIsScratching(true);
-    const onMouseUp = () => setIsScratching(false);
+    const onMouseUp = () => {
+      setIsScratching(false);
+      checkScratchedPercentage();
+    };
     const onMouseMove = (e: MouseEvent) => {
       if (isScratching) scratch(e.clientX, e.clientY);
     };
@@ -183,7 +212,10 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
       setIsScratching(true);
       setHasStartedScratching(true);
     };
-    const onTouchEnd = () => setIsScratching(false);
+    const onTouchEnd = () => {
+      setIsScratching(false);
+      checkScratchedPercentage();
+    };
     const onTouchMove = (e: TouchEvent) => {
       if (e.touches[0]) scratch(e.touches[0].clientX, e.touches[0].clientY);
     };
@@ -210,33 +242,43 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-[420px] mx-auto rounded-3xl p-[3px] bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 shadow-2xl shadow-amber-950/20 select-none"
+      className="relative w-full max-w-[430px] mx-auto rounded-2xl p-[1px] bg-gradient-to-b from-[#E6D7B8] via-[#CDB889] to-[#E2D2B0] shadow-[0_10px_35px_rgba(100,31,39,0.06),0_2px_8px_rgba(0,0,0,0.03)] border border-muted-gold/30 select-none"
     >
-      {/* Outer Card Shell with Letterpress Border */}
-      <div className="relative w-full rounded-[21px] overflow-hidden bg-[#FFFDF7] border border-amber-200/60 min-h-[220px] flex flex-col justify-between">
+      {/* Outer Letter Card Shell with Inset Frame */}
+      <div className="relative w-full rounded-[15px] overflow-hidden bg-[#FFFEFB] min-h-[250px] flex flex-col justify-between">
+        {/* Subtle Paper Texture */}
+        <div className="absolute inset-0 paper-texture pointer-events-none opacity-20" />
         
-        {/* Revealed Content underneath */}
-        <div className="p-6 sm:p-7 flex flex-col items-center text-center bg-gradient-to-b from-[#FFFDF7] via-[#FFF9ED] to-[#FBF2E0]">
-          <span className="text-[10px] font-satoshi font-semibold uppercase tracking-[0.2em] text-deep-maroon/70 mb-2">
-            The Invitation
+        {/* Fine Inset Gold Deckle Hairline */}
+        <div className="absolute inset-2.5 rounded-[10px] border border-muted-gold/25 pointer-events-none" />
+
+        {/* Revealed Content: Personal Letter from the Couple */}
+        <div className="relative z-10 p-6 sm:p-8 flex flex-col items-center text-center bg-gradient-to-b from-[#FFFEFB] via-[#FFFDF6] to-[#FAF5EC]">
+          <span className="text-[9.5px] font-satoshi font-semibold uppercase tracking-[0.24em] text-deep-maroon/70 mb-3">
+            ✧ A Personal Note ✧
           </span>
 
-          <h4 className="font-instrument font-normal text-3xl sm:text-4xl text-deep-maroon tracking-[-0.02em] leading-tight mb-1">
-            The Sunshine Soirée
-          </h4>
+          <h3 className="font-instrument italic font-normal text-2xl sm:text-[27px] text-deep-maroon tracking-[-0.01em] leading-snug mb-3.5 px-1">
+            &ldquo;We&rsquo;re so glad you&rsquo;re part of our story.&rdquo;
+          </h3>
 
-          <p className="font-satoshi font-medium text-warm-brown text-xs tracking-wider uppercase mb-1">
-            Saturday, 22 Nov · 10:30 AM
+          <p className="font-instrument italic text-[14.5px] sm:text-[15.5px] text-warm-brown/85 leading-relaxed max-w-sm mb-5 px-1">
+            As we begin this beautiful new chapter, having our favourite people around us means more than words can say. Thank you for being part of our lives and for making our happiest moments even more special.
           </p>
 
-          <p className="font-instrument italic text-warm-brown/85 text-sm sm:text-base leading-relaxed max-w-xs mb-3">
-            Poolside Lawn · Wear bright yellows &amp; florals · Prepare for petals &amp; turmeric.
-          </p>
+          <div className="flex flex-col items-center">
+            <span className="font-script text-xl sm:text-2xl text-deep-maroon leading-none mb-1">
+              With all our love,
+            </span>
+            <span className="font-instrument text-base sm:text-lg text-deep-maroon font-normal tracking-[-0.01em]">
+              Prashant &amp; Delliah
+            </span>
+          </div>
 
           {isRevealed && (
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300/60 text-emerald-800 text-[11px] font-satoshi font-medium mt-1">
-              <Check className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Invitation Unlocked</span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF5EC] border border-muted-gold/35 text-deep-maroon text-[9.5px] font-satoshi font-medium tracking-wider uppercase mt-4 shadow-sm">
+              <Check className="w-3 h-3 text-deep-maroon/75" />
+              <span>Note Unlocked</span>
             </div>
           )}
         </div>
@@ -254,24 +296,38 @@ export function ScratchCard({ onRevealed }: ScratchCardProps) {
               <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent animate-foil-shimmer" />
             </div>
 
-            {/* Interactive scratch guidance pill (fades out on first touch) */}
+            {/* Minimal horizontal scratch guidance cue */}
             {!hasStartedScratching && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-deep-maroon/90 text-warm-ivory text-[10px] font-sans font-medium tracking-wider uppercase shadow-md backdrop-blur-sm animate-hand-swipe">
-                  <Hand className="w-3.5 h-3.5 text-amber-300 animate-bounce" />
-                  <span>Swipe finger to scratch</span>
+              <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-opacity duration-300">
+                <div className="flex items-center gap-1.5 text-deep-maroon/75">
+                  <svg
+                    className="w-3.5 h-3.5 text-deep-maroon/70 flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M3 17L17 3" />
+                    <path d="M7 17l10-10" opacity="0.6" />
+                    <circle cx="15.5" cy="4.5" r="1.5" fill="currentColor" stroke="none" />
+                  </svg>
+                  <span className="font-satoshi text-[9.5px] sm:text-[10px] font-semibold tracking-[0.18em] uppercase whitespace-nowrap">
+                    SCRATCH TO REVEAL
+                  </span>
                 </div>
               </div>
             )}
 
-            {/* Discreet instant reveal button */}
-            <div className="absolute top-3 right-3 z-20">
+            {/* Minimal text action reveal control */}
+            <div className="absolute top-3.5 right-4 z-20">
               <button
                 onClick={handleReveal}
-                className="text-[9px] font-sans font-bold uppercase tracking-wider text-deep-maroon/90 px-2.5 py-1 rounded-full bg-warm-ivory/90 border border-amber-300/80 shadow-sm hover:bg-white active:scale-95 transition-transform"
+                className="font-satoshi text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-deep-maroon/75 hover:text-deep-maroon active:scale-95 transition-all py-1 px-1.5 focus:outline-none"
                 title="Quick reveal"
               >
-                Reveal ✦
+                ✧ REVEAL
               </button>
             </div>
           </>

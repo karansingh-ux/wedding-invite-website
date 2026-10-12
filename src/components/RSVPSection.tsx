@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { CheckCircle2, Heart } from 'lucide-react';
+import { FloralDividerMotif } from '@/components/Motifs';
 
 export function RSVPSection() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,16 +48,24 @@ export function RSVPSection() {
   return (
     <section
       id="rsvp"
-      className="relative w-full py-20 px-4 sm:px-6 bg-warm-ivory text-warm-brown overflow-hidden"
+      className="relative w-full py-8 sm:py-12 px-4 sm:px-6 bg-warm-ivory text-warm-brown overflow-hidden"
       aria-label="RSVP Invitation Section"
     >
       <div className="max-w-md mx-auto flex flex-col items-center text-center">
-        <h2 className="font-instrument font-normal text-4xl sm:text-5xl text-deep-maroon tracking-[-0.02em] leading-tight mb-2">
+        {/* Top Floral Ornament */}
+        <FloralDividerMotif className="w-28 h-6 mb-2.5" />
+
+        <h2 className="font-instrument font-normal text-5xl sm:text-6xl text-deep-maroon tracking-[-0.01em] leading-tight mb-1">
           RSVP
         </h2>
 
-        <p className="font-instrument italic text-base sm:text-lg text-warm-brown/85 leading-relaxed max-w-sm mb-6">
-          Come celebrate, eat something delicious, and dance until late. Please let us know if you can make it by October 15, 2026.
+        {/* Script Subhead from Column 5 */}
+        <p className="font-script text-3xl sm:text-4xl text-deep-maroon mb-1.5 leading-snug">
+          Let us know you&rsquo;re coming!
+        </p>
+
+        <p className="font-satoshi text-[10px] sm:text-[11px] tracking-[0.22em] uppercase text-warm-brown/70 font-semibold mb-4">
+          KINDLY REPLY BY 30 SEPT 2026
         </p>
 
         {/* Not yet submitted: RSVP Trigger or Form */}
@@ -64,9 +73,10 @@ export function RSVPSection() {
           !isOpen ? (
             <button
               onClick={() => setIsOpen(true)}
-              className="px-10 py-4 rounded-full bg-deep-maroon hover:bg-[#4E171E] text-butter-yellow font-sans font-semibold text-sm sm:text-base tracking-widest uppercase shadow-lg hover:shadow-xl transition-all active:scale-95 border border-muted-gold/30"
+              className="px-8 py-3.5 rounded-full bg-deep-maroon hover:bg-[#4E171E] text-butter-yellow font-satoshi font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase transition-all shadow-md active:scale-95 border border-muted-gold/40 flex items-center justify-center gap-2"
             >
-              RSVP
+              <span>SUBMIT RSVP</span>
+              <span className="text-base">→</span>
             </button>
           ) : (
             <form

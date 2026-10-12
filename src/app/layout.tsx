@@ -4,7 +4,7 @@ import { SmoothScrollProvider } from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
   title: 'Prashant & Delliah — The Wedding Celebration',
-  description: 'An interactive cinematic wedding celebration in Udaipur.',
+  description: 'An interactive cinematic wedding celebration in Malshej Ghat.',
 };
 
 export const viewport: Viewport = {

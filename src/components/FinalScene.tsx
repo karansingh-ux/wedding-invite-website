@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUp } from 'lucide-react';
+import { FloralDividerMotif } from '@/components/Motifs';
 
 export function FinalScene() {
   const containerRef = useRef<HTMLElement>(null);
@@ -42,7 +43,7 @@ export function FinalScene() {
   return (
     <footer
       ref={containerRef}
-      className="relative min-h-[75vh] w-full bg-[#180E14] text-warm-ivory flex flex-col items-center justify-between py-16 px-4 sm:px-6 overflow-hidden"
+      className="relative min-h-[50vh] sm:min-h-[60vh] w-full bg-[#180E14] text-warm-ivory flex flex-col items-center justify-between py-10 sm:py-12 px-4 sm:px-6 overflow-hidden"
       aria-label="Final Farewell Scene"
     >
       {/* Background night ambience */}
@@ -61,20 +62,32 @@ export function FinalScene() {
 
       <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto my-auto">
         <div ref={textRef} className="flex flex-col items-center">
-          <h2 className="font-instrument font-normal text-4xl sm:text-5xl text-butter-yellow tracking-[-0.02em] leading-tight mb-2">
-            See you under the lights.
+          {/* Masthead matching Column 5 */}
+          <h2 className="font-instrument font-normal text-4xl sm:text-5xl text-butter-yellow tracking-[-0.01em] leading-tight mb-1.5">
+            See You There!
           </h2>
 
-          <p className="font-instrument text-2xl sm:text-3xl text-warm-ivory font-normal mb-2 whitespace-nowrap">
+          <p className="font-satoshi text-[9.5px] sm:text-[10.5px] tracking-[0.2em] uppercase text-warm-ivory/75 font-semibold max-w-xs mb-2.5">
+            WE CAN&rsquo;T WAIT TO CELEBRATE THIS SPECIAL CHAPTER WITH YOU.
+          </p>
+
+          <FloralDividerMotif className="w-32 h-6 mb-2.5" />
+
+          {/* Script Quote from Reference */}
+          <p className="font-script text-3xl sm:text-4xl text-butter-yellow mb-3 leading-snug">
+            &ldquo;Same mountains. New beginnings.&rdquo;
+          </p>
+
+          <p className="font-instrument text-2xl sm:text-3xl text-warm-ivory font-normal mb-1 whitespace-nowrap">
             Prashant &amp; Delliah
           </p>
 
-          <p className="font-satoshi text-xs tracking-[0.2em] uppercase text-warm-ivory/60 font-medium mb-6">
-            21–23 NOVEMBER 2026 · UDAIPUR
+          <p className="font-satoshi text-[11px] sm:text-xs tracking-[0.2em] uppercase text-warm-ivory/60 font-medium mb-4">
+            10–11 NOVEMBER 2026 · MALSHEJ GHAT
           </p>
 
-          <p className="font-instrument italic text-sm text-warm-ivory/60 max-w-xs leading-relaxed border-t border-warm-ivory/15 pt-5">
-            Made with a little love, a lot of planning, and plenty of excitement.
+          <p className="font-instrument italic text-xs sm:text-sm text-warm-ivory/60 max-w-xs leading-relaxed border-t border-warm-ivory/15 pt-3">
+            Made with all our love, a lot of planning, and endless excitement.
           </p>
         </div>
       </div>

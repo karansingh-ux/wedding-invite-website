@@ -3,6 +3,8 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FloralDividerMotif } from '@/components/Motifs';
+import { finalPartyConfig } from '@/data/wedding';
 
 export function WeekendIntro() {
   const containerRef = useRef<HTMLElement>(null);
@@ -13,14 +15,13 @@ export function WeekendIntro() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Gentle reveal of the weekend numbers and keywords on scroll
       gsap.fromTo(
         headlineRef.current,
-        { y: 30, opacity: 0 },
+        { y: 25, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.2,
+          duration: 1.1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -30,13 +31,13 @@ export function WeekendIntro() {
       );
 
       gsap.fromTo(
-        '.weekend-word',
-        { y: 20, opacity: 0 },
+        '.celebration-label',
+        { y: 18, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          stagger: 0.15,
-          duration: 0.9,
+          stagger: 0.1,
+          duration: 0.85,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: wordsRef.current,
@@ -52,29 +53,51 @@ export function WeekendIntro() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full py-20 sm:py-28 px-6 flex flex-col items-center justify-center text-center bg-warm-ivory text-warm-brown overflow-hidden"
+      className="relative w-full pt-6 pb-8 sm:pt-8 sm:pb-10 px-4 sm:px-6 flex flex-col items-center justify-center text-center bg-warm-ivory text-warm-brown overflow-hidden"
       aria-label="Wedding Weekend Introduction"
     >
-      <div className="max-w-md mx-auto flex flex-col items-center">
+      <div className="max-w-xl mx-auto flex flex-col items-center">
+        {/* Masthead Label from Column 2 */}
+        <span className="font-satoshi text-[10px] tracking-[0.24em] uppercase text-deep-maroon/75 font-semibold mb-1">
+          THE
+        </span>
+
         {/* Primary Statement */}
         <h2
           ref={headlineRef}
-          className="font-instrument font-normal text-3xl xs:text-4xl sm:text-5xl text-deep-maroon tracking-[-0.02em] leading-[1.1] mb-6 max-w-sm mx-auto"
+          className="font-instrument font-normal text-4xl xs:text-5xl sm:text-6xl text-deep-maroon tracking-[-0.01em] leading-tight mb-1.5"
         >
-          Three days in Udaipur.<br />
-          Four celebrations.
+          Wedding Weekend
         </h2>
 
-        {/* The Atmospheric Rhythm Words */}
+        {/* Subtitle from Reference */}
+        <p className="font-satoshi text-[9.5px] sm:text-[10.5px] tracking-[0.2em] uppercase text-warm-brown/75 font-medium mb-2.5">
+          FOUR CELEBRATIONS. ONE UNFORGETTABLE JOURNEY.
+        </p>
+
+        {/* Floral Divider Motif */}
+        <FloralDividerMotif className="w-32 h-6 mb-3.5" />
+
+        {/* Exactly Four Celebration Labels */}
         <div
           ref={wordsRef}
-          className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-instrument italic text-xl xs:text-2xl text-warm-brown/85 max-w-xs"
+          className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center gap-x-6 gap-y-2.5 sm:gap-6 md:gap-8 font-instrument italic text-xl sm:text-2xl text-deep-maroon/90 text-center"
         >
-          <span className="weekend-word">Sunshine.</span>
-          <span className="weekend-word text-peach">Sunset.</span>
-          <span className="weekend-word">Music.</span>
-          <span className="weekend-word text-deep-maroon">Rituals.</span>
-          <span className="weekend-word text-sunset-orange">A little chaos.</span>
+          <div className="celebration-label flex items-center justify-center sm:justify-start gap-3 sm:gap-6 md:gap-8">
+            <span>Haldi</span>
+            <span className="hidden sm:inline text-muted-gold/60 text-base select-none">·</span>
+          </div>
+          <div className="celebration-label flex items-center justify-center sm:justify-start gap-3 sm:gap-6 md:gap-8">
+            <span>Sangeet</span>
+            <span className="hidden sm:inline text-muted-gold/60 text-base select-none">·</span>
+          </div>
+          <div className="celebration-label flex items-center justify-center sm:justify-start gap-3 sm:gap-6 md:gap-8">
+            <span>Wedding</span>
+            <span className="hidden sm:inline text-muted-gold/60 text-base select-none">·</span>
+          </div>
+          <div className="celebration-label flex items-center justify-center">
+            <span>{finalPartyConfig.name}</span>
+          </div>
         </div>
       </div>
     </section>

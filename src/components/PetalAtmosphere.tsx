@@ -3,24 +3,24 @@
 import React, { useMemo } from 'react';
 
 export function PetalAtmosphere() {
-  // Precompute 14 organic petal positions with varied timing and sizes
+  // Sparse, delicate ambient drifting petals with restrained opacity
   const petals = useMemo(() => {
-    return Array.from({ length: 14 }).map((_, i) => ({
+    return Array.from({ length: 7 }).map((_, i) => ({
       id: i,
-      left: `${(i * 7 + (i % 3) * 11) % 96}%`,
-      delay: `${(i * 1.4) % 9}s`,
-      duration: `${9 + (i % 5) * 2.5}s`,
-      size: 10 + (i % 4) * 4,
-      rotation: (i * 47) % 360,
-      opacity: 0.45 + (i % 3) * 0.15,
-      color: i % 3 === 0 ? '#EFA6B5' : i % 3 === 1 ? '#F2B08A' : '#D94875',
+      left: `${(i * 15 + 6) % 94}%`,
+      delay: `${(i * 2.2) % 10}s`,
+      duration: `${11 + (i % 4) * 3}s`,
+      size: 8 + (i % 3) * 3,
+      rotation: (i * 53) % 360,
+      opacity: 0.22 + (i % 3) * 0.08,
+      color: i % 2 === 0 ? '#EFA6B5' : '#F2B08A',
     }));
   }, []);
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 overflow-hidden z-20"
+      className="pointer-events-none fixed inset-0 overflow-hidden z-10"
     >
       {petals.map((p) => (
         <span

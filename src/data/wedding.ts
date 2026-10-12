@@ -33,6 +33,7 @@ export interface WeddingData {
     title: string;
     subTitle: string;
     date: string;
+    dateBadge: string;
     time: string;
     location: string;
     attire: string;
@@ -40,6 +41,22 @@ export interface WeddingData {
     palette: string[];
   }[];
 }
+
+/**
+ * Single configurable source for the final celebration party name and details.
+ * To update the final party name later, change it right here!
+ */
+export const finalPartyConfig = {
+  name: "Chill Party", // Final name to be provided later; update here easily
+  badge: "11TH NIGHT",
+  subTitle: "Intimate acoustic night & late-night unwinding",
+  time: "10:00 PM onwards",
+  location: "Fireside Garden Amphitheatre",
+  attire: "Cozy Loungewear",
+  description: "Good music, great company and starry skies. Late-night acoustic tunes, shared laughter, and fireside stories.",
+  reflectionQuote: "“Guitars, campfires, and unforgettable stories.”",
+  tagline: "DIFFERENT MOMENTS. SAME PEOPLE. ALL HEART.",
+};
 
 export const weddingData: WeddingData = {
   couple: {
@@ -59,11 +76,11 @@ export const weddingData: WeddingData = {
     tagline: "One celebration, one lifetime, one forever.",
   },
   destination: {
-    venue: "The Heritage Royal Palace & Gardens",
-    city: "Udaipur",
-    state: "Rajasthan",
+    venue: "The Heritage Resort & Gardens",
+    city: "Malshej Ghat",
+    state: "Maharashtra",
     country: "India",
-    dates: "November 21 – 23, 2026",
+    dates: "November 10 – 11, 2026",
     year: "2026",
   },
   blessing: {
@@ -73,58 +90,51 @@ export const weddingData: WeddingData = {
   },
   events: [
     {
-      id: "arrival",
-      title: "Resort Arrival & Welcome",
-      subTitle: "Check-in, welcome drinks & settling into the palace",
-      date: "Friday, Nov 21",
-      time: "12:00 PM onwards",
-      location: "Courtyard of Arches",
-      attire: "Casual Chic & Breezy Pastels",
-      description: "Step into our sunlit oasis where bougainvillea meets heritage courtyards. Grab your welcome drink, explore the gardens, and unwind before the celebrations commence.",
-      palette: ["#FFF8EA", "#F6DFA0", "#EFA6B5", "#641F27"],
-    },
-    {
-      id: "sunshine-soiree",
-      title: "The Sunshine Soirée",
-      subTitle: "A vibrant, petal-strewn Haldi celebration",
-      date: "Saturday, Nov 22",
+      id: "haldi",
+      title: "Haldi",
+      subTitle: "Playful, bright and full of joy",
+      date: "10th Morning",
+      dateBadge: "10TH MORNING",
       time: "10:30 AM",
-      location: "Sunlit Poolside Lawn",
-      attire: "Shades of Yellow, Peach & Floral prints",
+      location: "Poolside Lawn",
+      attire: "Bright Yellows & Florals",
       description: "Turmeric, marigolds, splashing water, and joyful tunes under the morning sun.",
       palette: ["#F6DFA0", "#F2B08A", "#D9784B", "#EFA6B5"],
     },
     {
-      id: "sunset-sparkles",
-      title: "Sunset & Sparkles",
-      subTitle: "Sunset Puja, Ring Exchange & Sangeet",
-      date: "Saturday, Nov 22",
-      time: "6:00 PM",
+      id: "sangeet",
+      title: "Engagement + Sundowner Sangeet",
+      subTitle: "Sunset rings, cocktail glam, and dancing until twilight",
+      date: "10th Evening",
+      dateBadge: "10TH EVENING",
+      time: "5:30 PM onwards",
       location: "Palace Amphitheatre",
-      attire: "Cocktail Glamour & Royal Indo-Western",
+      attire: "Indo-Western Glam",
       description: "As golden hour slips into twilight, fairy lights illuminate an evening of dance battles, soulful melodies, and endless celebration.",
       palette: ["#C8B7D9", "#F2B08A", "#641F27", "#C7A85A"],
     },
     {
       id: "wedding",
-      title: "The Auspicious Wedding",
-      subTitle: "Sacred rituals and celebration by the lake",
-      date: "Sunday, Nov 23",
-      time: "9:30 AM",
-      location: "Temple Mandap by the Lake",
-      attire: "Traditional Festive Elegance",
-      description: "Jasmine and marigolds under the morning sun as two lives unite under the sacred fire.",
+      title: "The Wedding",
+      subTitle: "Our favourite ritual, rooted in tradition and surrounded by nature's beauty",
+      date: "11th",
+      dateBadge: "11TH",
+      time: "4:00 PM Baraat · 5:30 PM Pheras",
+      location: "Sacred Mandap",
+      attire: "Traditional Royal Attire",
+      description: "Two souls, seven sacred vows, and a shared forever under the mountain mist.",
       palette: ["#FFF8EA", "#641F27", "#53614D", "#C7A85A"],
     },
     {
-      id: "moonlight-jam",
-      title: "Moonlight Jam",
-      subTitle: "Intimate acoustic night & heartfelt memories",
-      date: "Sunday, Nov 23",
-      time: "8:00 PM",
-      location: "Starlit Olive Grove",
-      attire: "Comfortable Elegance",
-      description: "Late-night live acoustic tunes, shared memories, cozy bonfire seating, and endless midnight conversations.",
+      id: "final-party",
+      title: finalPartyConfig.name,
+      subTitle: finalPartyConfig.subTitle,
+      date: "11th Night",
+      dateBadge: finalPartyConfig.badge,
+      time: finalPartyConfig.time,
+      location: finalPartyConfig.location,
+      attire: finalPartyConfig.attire,
+      description: finalPartyConfig.description,
       palette: ["#641F27", "#53614D", "#F6DFA0", "#FFF8EA"],
     },
   ],
