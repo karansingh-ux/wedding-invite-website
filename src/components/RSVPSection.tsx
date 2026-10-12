@@ -51,20 +51,12 @@ export function RSVPSection() {
       aria-label="RSVP Invitation Section"
     >
       <div className="max-w-md mx-auto flex flex-col items-center text-center">
-        <span className="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.25em] text-deep-maroon/70 mb-2">
-          AND NOW FOR THE IMPORTANT PART
-        </span>
-
-        <h2 className="font-display-title text-3xl xs:text-4xl sm:text-5xl font-bold text-deep-maroon tracking-tight leading-tight mb-3">
-          WILL WE SEE YOU THERE?
+        <h2 className="font-instrument font-normal text-4xl sm:text-5xl text-deep-maroon tracking-[-0.02em] leading-tight mb-2">
+          RSVP
         </h2>
 
-        <p className="font-editorial italic text-base sm:text-lg text-deep-maroon font-medium mb-2">
-          We really hope so.
-        </p>
-
-        <p className="font-editorial text-xs xs:text-sm sm:text-base text-warm-brown/85 leading-relaxed max-w-sm mb-8">
-          Come celebrate with us, eat something delicious, dance a little too much, and make the weekend what it should be — ours, but with all of you in it.
+        <p className="font-instrument italic text-base sm:text-lg text-warm-brown/85 leading-relaxed max-w-sm mb-6">
+          Come celebrate, eat something delicious, and dance until late. Please let us know if you can make it by October 15, 2026.
         </p>
 
         {/* Not yet submitted: RSVP Trigger or Form */}

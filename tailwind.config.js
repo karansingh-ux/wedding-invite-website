@@ -22,8 +22,9 @@ module.exports = {
         'muted-gold': '#C7A85A',
       },
       fontFamily: {
-        display: ['var(--font-bricolage)', 'sans-serif'],
-        editorial: ['var(--font-newsreader)', 'serif'],
+        display: ['var(--font-display-active)', 'Georgia', 'serif'],
+        editorial: ['var(--font-editorial-active)', 'Georgia', 'serif'],
+        sans: ['var(--font-body-active)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       spacing: {
         'space-1': '8px',

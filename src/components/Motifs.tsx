@@ -17,7 +17,7 @@ export function KolamMotif({ className = "w-12 h-12 text-warm-brown/20" }: { cla
   );
 }
 
-// Subtle Gujarati Bandhani diamond dots motif
+// Subtle geometric diamond dots motif
 export function BandhaniMotif({ className = "w-10 h-10 text-deep-maroon/20" }: { className?: string }) {
   return (
     <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>

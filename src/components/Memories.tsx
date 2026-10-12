@@ -15,30 +15,30 @@ interface MemoryItem {
 const memories: MemoryItem[] = [
   {
     id: 'm1',
-    title: 'Ananya at Marina Beach',
+    title: 'Delliah Growing Up',
     year: '2004',
-    caption: 'Refusing to leave the waves before sunset.',
+    caption: 'Refusing to leave the beach before sunset.',
     placeholderBg: 'from-[#F5E6D3] to-[#E8D4BE]',
   },
   {
     id: 'm2',
-    title: 'Dhruv in Ahmedabad',
+    title: 'Prashant Growing Up',
     year: '2006',
-    caption: 'Proudly holding his very first cricket medal.',
+    caption: 'Proudly holding his very first championship medal.',
     placeholderBg: 'from-[#EBE0D0] to-[#DECBB4]',
   },
   {
     id: 'm3',
-    title: 'First Coffee in Mumbai',
+    title: 'First Coffee Date',
     year: '2019',
-    caption: 'A 20-minute coffee that somehow turned into four hours.',
+    caption: 'A quick coffee that somehow turned into hours of talking.',
     placeholderBg: 'from-[#F2DFCE] to-[#E2CCB7]',
   },
   {
     id: 'm4',
-    title: 'First Udaipur Trip',
+    title: 'First Trip to Udaipur',
     year: '2023',
-    caption: 'The exact weekend we whispered: "Imagine getting married here."',
+    caption: 'The moment we whispered: "Imagine getting married here."',
     placeholderBg: 'from-[#F4E3D7] to-[#E4CFBF]',
   },
 ];
@@ -96,16 +96,12 @@ export function Memories() {
       <div className="max-w-md sm:max-w-2xl mx-auto flex flex-col items-center">
         {/* Header */}
         <header ref={headerRef} className="text-center mb-10 max-w-md">
-          <span className="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.25em] text-deep-maroon/70 mb-2 block">
-            BEFORE ALL OF THIS
-          </span>
-
-          <h2 className="font-display-title text-2xl xs:text-3xl sm:text-4xl font-bold text-deep-maroon tracking-tight leading-tight mb-3">
-            A FEW THINGS WE GREW UP WITH.
+          <h2 className="font-instrument font-normal text-3xl sm:text-4xl text-deep-maroon tracking-[-0.02em] leading-tight mb-2">
+            Growing Up
           </h2>
 
-          <p className="font-editorial italic text-xs xs:text-sm sm:text-base text-warm-brown/85 leading-relaxed">
-            Before the wedding, before the outfits, before everyone started asking about the date — there were these two.
+          <p className="font-instrument italic text-base text-warm-brown/80 leading-relaxed max-w-sm mx-auto">
+            A few quiet moments before this chapter began.
           </p>
         </header>
 
@@ -118,21 +114,18 @@ export function Memories() {
             >
               {/* Photo Frame Container */}
               <div
-                className={`w-full aspect-[4/3] rounded-xl bg-gradient-to-br ${mem.placeholderBg} border border-warm-brown/10 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden mb-3.5`}
+                className={`w-full aspect-[4/3] rounded-xl bg-gradient-to-br ${mem.placeholderBg} border border-warm-brown/10 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden mb-3`}
               >
-                <div className="w-10 h-10 rounded-full bg-warm-ivory/60 flex items-center justify-center text-deep-maroon/70 text-xs font-serif font-bold mb-1 shadow-inner">
+                <div className="w-9 h-9 rounded-full bg-warm-ivory/70 flex items-center justify-center text-deep-maroon/80 text-xs font-mono font-bold mb-1 shadow-inner">
                   {mem.year}
                 </div>
-                <span className="font-sans font-semibold text-deep-maroon text-xs sm:text-sm">
+                <span className="font-instrument font-normal text-base text-deep-maroon">
                   {mem.title}
-                </span>
-                <span className="text-[10px] uppercase tracking-widest text-warm-brown/60 font-medium mt-0.5">
-                  Archival Memory
                 </span>
               </div>
 
               {/* Caption */}
-              <p className="font-editorial italic text-xs xs:text-sm text-warm-brown/85 leading-snug">
+              <p className="font-instrument italic text-xs xs:text-sm text-warm-brown/80 leading-snug text-center">
                 &ldquo;{mem.caption}&rdquo;
               </p>
             </div>

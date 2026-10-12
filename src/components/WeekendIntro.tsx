@@ -56,24 +56,19 @@ export function WeekendIntro() {
       aria-label="Wedding Weekend Introduction"
     >
       <div className="max-w-md mx-auto flex flex-col items-center">
-        {/* Editorial Subtitle */}
-        <span className="text-[10px] sm:text-xs font-sans font-semibold uppercase tracking-[0.3em] text-deep-maroon/70 mb-3">
-          The Celebration Roadmap
-        </span>
-
         {/* Primary Statement */}
         <h2
           ref={headlineRef}
-          className="font-display-title text-3xl xs:text-4xl sm:text-5xl font-bold text-deep-maroon tracking-tight leading-[1.05] mb-6"
+          className="font-instrument font-normal text-3xl xs:text-4xl sm:text-5xl text-deep-maroon tracking-[-0.02em] leading-[1.1] mb-6 max-w-sm mx-auto"
         >
-          THREE DAYS.<br />
-          FOUR CELEBRATIONS.
+          Three days in Udaipur.<br />
+          Four celebrations.
         </h2>
 
-        {/* The 5 Atmospheric Rhythm Words */}
+        {/* The Atmospheric Rhythm Words */}
         <div
           ref={wordsRef}
-          className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 font-editorial italic text-lg xs:text-xl sm:text-2xl text-warm-brown/85 max-w-xs"
+          className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-instrument italic text-xl xs:text-2xl text-warm-brown/85 max-w-xs"
         >
           <span className="weekend-word">Sunshine.</span>
           <span className="weekend-word text-peach">Sunset.</span>

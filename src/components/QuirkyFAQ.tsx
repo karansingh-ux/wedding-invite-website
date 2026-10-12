@@ -52,13 +52,13 @@ export function QuirkyFAQ() {
     >
       <div className="max-w-md mx-auto flex flex-col items-center">
         <header className="text-center mb-8">
-          <span className="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.25em] text-deep-maroon/70 mb-2 block">
-            BEFORE YOU GO
-          </span>
-
-          <h2 className="font-display-title text-2xl xs:text-3xl sm:text-4xl font-bold text-deep-maroon tracking-tight leading-tight mb-2">
-            A FEW THINGS YOU MIGHT BE WONDERING.
+          <h2 className="font-instrument font-normal text-3xl sm:text-4xl text-deep-maroon tracking-[-0.02em] leading-tight mb-1.5">
+            Questions &amp; Details
           </h2>
+
+          <p className="font-instrument italic text-base text-warm-brown/80 leading-relaxed">
+            A few helpful things to know before you arrive.
+          </p>
         </header>
 
         {/* Minimal Accordion */}
@@ -68,11 +68,11 @@ export function QuirkyFAQ() {
             return (
               <div
                 key={faq.id}
-                className="rounded-2xl bg-white/80 border border-warm-brown/10 overflow-hidden transition-all"
+                className="rounded-2xl bg-white/80 border border-warm-brown/10 overflow-hidden transition-all shadow-sm"
               >
                 <button
                   onClick={() => toggle(faq.id)}
-                  className="w-full px-5 py-4 flex items-center justify-between text-left font-sans font-semibold text-deep-maroon text-sm sm:text-base"
+                  className="w-full px-5 py-4 flex items-center justify-between text-left font-instrument font-normal text-lg sm:text-xl text-deep-maroon"
                   aria-expanded={isOpen}
                 >
                   <span>{faq.question}</span>
@@ -84,7 +84,7 @@ export function QuirkyFAQ() {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-4 text-xs sm:text-sm font-editorial italic text-warm-brown/85 leading-relaxed border-t border-warm-brown/5 pt-2 animate-fade-in">
+                  <div className="px-5 pb-4 text-xs sm:text-sm font-satoshi text-warm-brown/85 leading-relaxed border-t border-warm-brown/5 pt-2">
                     {faq.answer}
                   </div>
                 )}

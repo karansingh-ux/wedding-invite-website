@@ -16,50 +16,50 @@ const quizQuestions: Question[] = [
   {
     id: 1,
     text: 'Who is more likely to be running 20 minutes late?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'groom',
   },
   {
     id: 2,
     text: 'Who takes longer to get ready for an event?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'bride',
   },
   {
     id: 3,
     text: 'Who actually said "I love you" first?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'groom',
   },
   {
     id: 4,
     text: 'Who is guaranteed to start dancing the minute music plays?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'bride',
   },
   {
     id: 5,
-    text: 'Who spends more money on completely unnecessary gadgets?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    text: 'Who spends more time browsing travel destinations?',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'groom',
   },
   {
     id: 6,
     text: 'Who misplaces their phone at least three times a day?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'bride',
   },
   {
     id: 7,
     text: 'Who would survive longer without checking their phone?',
-    brideAnswer: 'Ananya',
-    groomAnswer: 'Dhruv',
+    brideAnswer: 'Delliah',
+    groomAnswer: 'Prashant',
     correctAnswer: 'bride',
   },
 ];
@@ -140,23 +140,19 @@ export function BrideVsGroomGame() {
         {/* State 1: Intro (Not yet started, not completed) */}
         {!hasStarted && !isCompleted && (
           <div className="text-center w-full">
-            <span className="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.25em] text-deep-maroon/70 mb-2 block">
-              OKAY, LET&apos;S SETTLE THIS.
-            </span>
-
-            <h2 className="font-display-title text-2xl xs:text-3xl sm:text-4xl font-bold text-deep-maroon tracking-tight leading-tight mb-3">
-              HOW WELL DO YOU REALLY KNOW THEM?
+            <h2 className="font-instrument font-normal text-3xl sm:text-4xl text-deep-maroon tracking-[-0.02em] leading-tight mb-2">
+              Bride or Groom?
             </h2>
 
-            <p className="font-editorial italic text-xs xs:text-sm sm:text-base text-warm-brown/85 leading-relaxed mb-6">
-              You&apos;ve made it through the wedding. Now prove you&apos;ve been paying attention.
+            <p className="font-instrument italic text-base text-warm-brown/85 leading-relaxed mb-6">
+              How well do you really know Prashant and Delliah?
             </p>
 
             <button
               onClick={() => setHasStarted(true)}
-              className="px-8 py-3.5 rounded-full bg-deep-maroon hover:bg-[#4E171E] text-butter-yellow font-sans font-semibold text-sm sm:text-base tracking-wide shadow-md hover:shadow-lg transition-all active:scale-95"
+              className="px-7 py-3 rounded-full bg-deep-maroon hover:bg-[#4E171E] text-butter-yellow font-satoshi font-medium text-sm tracking-wide shadow-md transition-all active:scale-95"
             >
-              TAKE THE QUIZ
+              Play the Quiz
             </button>
           </div>
         )}
@@ -164,32 +160,32 @@ export function BrideVsGroomGame() {
         {/* State 2: Active Quiz Questions */}
         {hasStarted && !isCompleted && (
           <div className="w-full p-6 sm:p-7 rounded-3xl bg-white/90 border border-deep-maroon/15 shadow-xl flex flex-col">
-            <div className="flex items-center justify-between text-xs font-sans text-warm-brown/60 mb-4 border-b border-warm-brown/10 pb-3">
+            <div className="flex items-center justify-between text-xs font-satoshi text-warm-brown/60 mb-4 border-b border-warm-brown/10 pb-3">
               <span className="uppercase tracking-wider font-semibold text-deep-maroon">
                 Question {currentIdx + 1} of {quizQuestions.length}
               </span>
               <span>Score: {score}</span>
             </div>
 
-            <h3 className="font-sans font-bold text-deep-maroon text-lg sm:text-xl leading-snug mb-6 text-center">
+            <h3 className="font-instrument font-normal text-2xl text-deep-maroon leading-snug mb-6 text-center">
               {quizQuestions[currentIdx].text}
             </h3>
 
             <div className="grid grid-cols-2 gap-3.5">
               <button
                 onClick={() => handleAnswer('bride')}
-                className="py-4 px-3 rounded-2xl bg-[#FFF5F7] border border-soft-pink/40 hover:border-soft-pink text-deep-maroon font-sans font-semibold text-sm text-center shadow-sm hover:shadow transition-all active:scale-95 flex flex-col items-center justify-center gap-1"
+                className="py-4 px-3 rounded-2xl bg-[#FFF5F7] border border-soft-pink/40 hover:border-soft-pink text-deep-maroon font-satoshi font-semibold text-sm text-center shadow-sm hover:shadow transition-all active:scale-95 flex flex-col items-center justify-center gap-1"
               >
                 <span className="text-xs uppercase tracking-widest text-deep-maroon/60">Bride</span>
-                <span className="text-base text-deep-maroon font-bold">Ananya</span>
+                <span className="text-base text-deep-maroon font-bold font-instrument">Delliah</span>
               </button>
 
               <button
                 onClick={() => handleAnswer('groom')}
-                className="py-4 px-3 rounded-2xl bg-[#FFFDF5] border border-butter-yellow/60 hover:border-butter-yellow text-warm-brown font-sans font-semibold text-sm text-center shadow-sm hover:shadow transition-all active:scale-95 flex flex-col items-center justify-center gap-1"
+                className="py-4 px-3 rounded-2xl bg-[#FFFDF5] border border-butter-yellow/60 hover:border-butter-yellow text-warm-brown font-satoshi font-semibold text-sm text-center shadow-sm hover:shadow transition-all active:scale-95 flex flex-col items-center justify-center gap-1"
               >
                 <span className="text-xs uppercase tracking-widest text-warm-brown/60">Groom</span>
-                <span className="text-base text-deep-maroon font-bold">Dhruv</span>
+                <span className="text-base text-deep-maroon font-bold font-instrument">Prashant</span>
               </button>
             </div>
           </div>

@@ -1,12 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap');
+/* Curated Editorial Typography: Instrument Serif + Satoshi / DM Sans (-2% Tracking) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-bricolage: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-newsreader: 'Newsreader', Georgia, serif;
+  /* Instrument Serif (-2% kerning) for all titles and headings */
+  --font-display-active: 'Instrument Serif', Georgia, serif;
+  --font-editorial-active: 'Instrument Serif', Georgia, serif;
+  /* Satoshi / DM Sans (-2% kerning) for body copy & metadata */
+  --font-body-active: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --tracking-title: -0.02em; /* Strictly -2% letter spacing */
+  --tracking-body: -0.02em;  /* Strictly -2% letter spacing */
 
   --color-butter-yellow: #F6DFA0;
   --color-warm-ivory: #FFF8EA;
@@ -20,6 +27,11 @@
   --color-sage: #A8B29A;
   --color-deep-green: #53614D;
   --color-muted-gold: #C7A85A;
+}
+
+body {
+  font-family: var(--font-body-active), sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* Lenis smooth scrolling core styles */
@@ -43,32 +55,44 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Typography styles conforming to DESIGN_SYSTEM.md */
+/* Typography styles conforming to designer editorial standard */
 .font-hero {
-  font-family: var(--font-bricolage), sans-serif;
-  font-size: clamp(3.25rem, 8vw, 10rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display-active), Georgia, serif;
+  font-size: clamp(2.5rem, 6.5vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
 .font-display-title {
-  font-family: var(--font-bricolage), sans-serif;
-  font-size: clamp(2.5rem, 5.5vw, 6.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display-active), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 4.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
 .font-editorial-sub {
-  font-family: var(--font-newsreader), serif;
+  font-family: var(--font-display-active), Georgia, serif;
   font-style: italic;
-  font-size: clamp(1.25rem, 2.2vw, 2rem);
+  font-size: clamp(1.125rem, 1.8vw, 1.625rem);
   line-height: 1.35;
+  letter-spacing: -0.02em;
 }
 
 .font-body-refined {
-  font-family: var(--font-newsreader), serif;
-  font-size: clamp(0.9375rem, 1.2vw, 1.125rem);
-  line-height: 1.65;
+  font-family: var(--font-body-active), sans-serif;
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  line-height: 1.6;
+  letter-spacing: -0.02em;
+}
+
+/* Dedicated Typography Utility Classes */
+.font-instrument { 
+  font-family: 'Instrument Serif', Georgia, serif; 
+  letter-spacing: -0.02em;
+}
+.font-satoshi { 
+  font-family: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; 
+  letter-spacing: -0.02em;
 }
 
 /* GPU acceleration helpers */
@@ -98,6 +122,36 @@ html.lenis, html.lenis body {
 
 .animate-soft-pulse {
   animation: softPulse 3s ease-in-out infinite;
+}
+
+/* Metallic foil shimmer sweep */
+@keyframes foilShimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-foil-shimmer {
+  animation: foilShimmer 4.5s ease-in-out infinite;
+}
+
+/* Interactive finger / coin scratch guide */
+@keyframes handSwipe {
+  0%, 100% {
+    transform: translateX(-20px) translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(20px) translateY(-3px);
+    opacity: 1;
+  }
+}
+
+.animate-hand-swipe {
+  animation: handSwipe 1.6s ease-in-out infinite;
 }
 
 /* Floating bougainvillea petals */

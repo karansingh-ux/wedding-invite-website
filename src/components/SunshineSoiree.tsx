@@ -8,54 +8,13 @@ import { ScratchCard } from '@/components/ScratchCard';
 
 export function SunshineSoiree() {
   const containerRef = useRef<HTMLElement>(null);
-  const imageFrameRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Parallax scroll on the Haldi garden environment
-      if (imageFrameRef.current) {
-        gsap.to(imageFrameRef.current, {
-          yPercent: 6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2,
-          },
-        });
-      }
-
-      // Editorial text reveal
-      if (textRef.current) {
-        gsap.fromTo(
-          textRef.current,
-          { y: 25, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: textRef.current,
-              start: 'top 80%',
-            },
-          }
-        );
-      }
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
       ref={containerRef}
       id="sunshine-soiree"
-      className="relative min-h-screen w-full bg-[#FFFBF0] text-warm-brown flex flex-col items-center justify-between py-16 px-4 sm:px-6 overflow-hidden"
+      className="relative min-h-screen w-full bg-[#FFFBF0] text-warm-brown flex flex-col items-center justify-center py-16 sm:py-24 px-4 sm:px-6 overflow-hidden"
       aria-label="The Sunshine Soirée Haldi Event"
     >
       {/* Background radial warmth */}
@@ -66,29 +25,22 @@ export function SunshineSoiree() {
         ref={textRef}
         className="relative z-20 flex flex-col items-center text-center max-w-md mx-auto mb-6 px-2"
       >
-        <span className="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.25em] text-sunset-orange mb-1.5">
-          01 · THE MORNING AFTER WE DECIDED TO GET MESSY
-        </span>
-
-        <h2 className="font-display-title text-3xl xs:text-4xl sm:text-5xl font-bold text-deep-maroon tracking-tight leading-none mb-3">
-          THE SUNSHINE SOIRÉE
+        <h2 className="font-instrument font-normal text-3xl xs:text-4xl sm:text-5xl text-deep-maroon tracking-[-0.02em] leading-tight mb-2">
+          The Sunshine Soirée
         </h2>
 
-        <p className="font-editorial italic text-xs xs:text-sm sm:text-base text-warm-brown/90 leading-snug max-w-sm mb-2">
-          Come for the flowers. Stay for the haldi. Leave with absolutely no chance of keeping your outfit clean.
+        <p className="font-instrument italic text-base sm:text-lg text-warm-brown/85 leading-snug max-w-sm mb-2">
+          A morning of sunshine, marigold petals, and haldi.
         </p>
 
-        <p className="font-sans text-[10px] xs:text-[11px] tracking-[0.2em] uppercase text-warm-brown/70 font-medium">
-          SATURDAY, 22 NOV · 10:30 AM · SUNLIT POOLSIDE LAWN
+        <p className="font-satoshi text-[11px] sm:text-xs tracking-[0.15em] uppercase text-warm-brown/70 font-medium">
+          Saturday, 22 Nov · 10:30 AM · Poolside Lawn
         </p>
       </header>
 
       {/* Visual Environment Canvas Frame */}
-      <main className="relative z-10 w-full max-w-[420px] flex-1 flex flex-col items-center justify-center my-4">
-        <div
-          ref={imageFrameRef}
-          className="relative w-full h-[60vh] max-h-[580px] rounded-3xl overflow-hidden shadow-2xl border border-muted-gold/25 bg-soft-cream will-change-transform mb-6"
-        >
+      <main className="relative z-10 w-full max-w-[420px] flex flex-col items-center justify-center my-2">
+        <div className="relative w-full aspect-[4/5] max-h-[460px] rounded-3xl overflow-hidden shadow-2xl border border-muted-gold/30 bg-soft-cream mb-6">
           <Image
             src="/images/sunshine-soiree-bg.jpg"
             alt="Sunshine Soiree Haldi Garden Setup"

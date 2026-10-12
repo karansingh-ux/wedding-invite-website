@@ -3,8 +3,8 @@ import '@/styles/globals.css';
 import { SmoothScrollProvider } from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
-  title: 'Ananya & Dhruv — The Wedding Celebration',
-  description: 'An interactive cinematic Gujarati × Tamil wedding celebration in Udaipur.',
+  title: 'Prashant & Delliah — The Wedding Celebration',
+  description: 'An interactive cinematic wedding celebration in Udaipur.',
 };
 
 export const viewport: Viewport = {

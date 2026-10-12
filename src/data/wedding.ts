@@ -44,19 +44,19 @@ export interface WeddingData {
 export const weddingData: WeddingData = {
   couple: {
     bride: {
-      firstName: "Ananya",
-      fullName: "Ananya Krishnamurthy",
-      culture: "Tamil",
-      hometown: "Chennai",
+      firstName: "Delliah",
+      fullName: "Delliah",
+      culture: "",
+      hometown: "",
     },
     groom: {
-      firstName: "Dhruv",
-      fullName: "Dhruv Patel",
-      culture: "Gujarati",
-      hometown: "Ahmedabad",
+      firstName: "Prashant",
+      fullName: "Prashant",
+      culture: "",
+      hometown: "",
     },
-    combinedTag: "Ananya & Dhruv",
-    tagline: "Two cultures, one wedding, one forever.",
+    combinedTag: "Prashant & Delliah",
+    tagline: "One celebration, one lifetime, one forever.",
   },
   destination: {
     venue: "The Heritage Royal Palace & Gardens",
@@ -108,12 +108,12 @@ export const weddingData: WeddingData = {
     {
       id: "wedding",
       title: "The Auspicious Wedding",
-      subTitle: "Tamil rituals meet Gujarati festive traditions",
+      subTitle: "Sacred rituals and celebration by the lake",
       date: "Sunday, Nov 23",
       time: "9:30 AM",
       location: "Temple Mandap by the Lake",
-      attire: "Traditional South Indian & Gujarati Elegance",
-      description: "Jasmine meets Marigold, Kolam meets Bandhani. Two sacred heritage traditions weave together under the holy fire.",
+      attire: "Traditional Festive Elegance",
+      description: "Jasmine and marigolds under the morning sun as two lives unite under the sacred fire.",
       palette: ["#FFF8EA", "#641F27", "#53614D", "#C7A85A"],
     },
     {

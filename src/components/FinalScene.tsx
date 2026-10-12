@@ -61,24 +61,20 @@ export function FinalScene() {
 
       <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center text-center max-w-md mx-auto my-auto">
         <div ref={textRef} className="flex flex-col items-center">
-          <span className="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.3em] text-peach mb-3">
-            UNTIL THEN
-          </span>
-
-          <h2 className="font-display-title text-3xl xs:text-4xl sm:text-5xl font-bold text-butter-yellow tracking-tight leading-tight mb-4">
-            SEE YOU UNDER THE LIGHTS.
+          <h2 className="font-instrument font-normal text-4xl sm:text-5xl text-butter-yellow tracking-[-0.02em] leading-tight mb-2">
+            See you under the lights.
           </h2>
 
-          <p className="font-editorial text-xl sm:text-2xl text-warm-ivory font-light mb-2">
-            Ananya &amp; Dhruv
+          <p className="font-instrument text-2xl sm:text-3xl text-warm-ivory font-normal mb-2 whitespace-nowrap">
+            Prashant &amp; Delliah
           </p>
 
-          <p className="font-sans text-[11px] sm:text-xs tracking-[0.25em] uppercase text-warm-ivory/60 font-medium mb-8">
+          <p className="font-satoshi text-xs tracking-[0.2em] uppercase text-warm-ivory/60 font-medium mb-6">
             21–23 NOVEMBER 2026 · UDAIPUR
           </p>
 
-          <p className="font-editorial italic text-xs xs:text-sm text-warm-ivory/60 max-w-xs leading-relaxed border-t border-warm-ivory/15 pt-5">
-            Made with a little love, a lot of planning, and probably too many opinions.
+          <p className="font-instrument italic text-sm text-warm-ivory/60 max-w-xs leading-relaxed border-t border-warm-ivory/15 pt-5">
+            Made with a little love, a lot of planning, and plenty of excitement.
           </p>
         </div>
       </div>
