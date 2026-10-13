@@ -4,6 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { GanpatiOpening } from '@/components/GanpatiOpening';
 import { ResortArrival } from '@/components/ResortArrival';
 import { WeekendIntro } from '@/components/WeekendIntro';
+import { SecretNoteSection } from '@/components/SecretNoteSection';
 import { SunshineSoiree } from '@/components/SunshineSoiree';
 import { SunsetAndSparkles } from '@/components/SunsetAndSparkles';
 import { BaraatWedding } from '@/components/BaraatWedding';
@@ -56,10 +57,13 @@ export default function Home() {
       {/* 8. Section 06: The Wedding (Sacred Mandap) */}
       <BaraatWedding />
 
-      {/* 9. Section 07: Moonlight Jam (Acoustic Night) */}
+      {/* 9. Section 07: Moonlight Jam (Acoustic Night - Final Event) */}
       <MoonlightJam />
 
-      {/* 12. Section 10: Bride vs Groom Game */}
+      {/* 10. Section 08: Scratch Card Note from Prashant & Delliah */}
+      <SecretNoteSection />
+
+      {/* 11. Section 10: Bride vs Groom Game */}
       <BrideVsGroomGame />
 
       {/* 13. Section 11: Important Details & FAQs */}
