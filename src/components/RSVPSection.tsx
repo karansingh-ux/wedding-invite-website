@@ -48,7 +48,7 @@ export function RSVPSection() {
   return (
     <section
       id="rsvp"
-      className="relative w-full py-8 sm:py-12 px-4 sm:px-6 bg-warm-ivory text-warm-brown overflow-hidden"
+      className="relative w-full min-h-[100dvh] py-16 sm:py-20 px-4 sm:px-6 bg-warm-ivory text-warm-brown overflow-hidden flex flex-col justify-center items-center"
       aria-label="RSVP Invitation Section"
     >
       <div className="max-w-md mx-auto flex flex-col items-center text-center">

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Calendar, MapPin, Car, Shirt, Gift } from 'lucide-react';
 import { FloralDividerMotif } from '@/components/Motifs';
 import { finalPartyConfig } from '@/data/wedding';
@@ -54,7 +55,7 @@ export function QuirkyFAQ() {
   return (
     <section
       id="faq"
-      className="relative w-full py-8 sm:py-12 px-4 sm:px-6 bg-[#FAF6EE] text-warm-brown overflow-hidden"
+      className="relative w-full min-h-[100dvh] py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF6EE] text-warm-brown overflow-hidden flex flex-col justify-center items-center"
       aria-label="Frequently Asked Questions & Essential Details"
     >
       <div className="absolute inset-0 paper-texture pointer-events-none opacity-30" />
@@ -96,94 +97,104 @@ export function QuirkyFAQ() {
                   />
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 pb-5 pt-3 border-t border-muted-gold/15">
-                    {faq.isConsolidated ? (
-                      /* Consolidated Essential Details Panel */
-                      <div className="space-y-3.5 text-left">
-                        {/* Dates */}
-                        <div className="flex items-start gap-3">
-                          <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
-                            <Calendar className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
-                              Dates &amp; Schedule
-                            </span>
-                            <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
-                              10 – 11 November 2026 · Four celebrations: 10th Morning (Haldi), 10th Evening (Engagement + Sundowner Sangeet), 11th (Wedding), and 11th Night ({finalPartyConfig.name}).
-                            </span>
-                          </div>
-                        </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 pt-3 border-t border-muted-gold/15">
+                        {faq.isConsolidated ? (
+                          /* Consolidated Essential Details Panel */
+                          <div className="space-y-3.5 text-left">
+                            {/* Dates */}
+                            <div className="flex items-start gap-3">
+                              <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
+                                <Calendar className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
+                                  Dates &amp; Schedule
+                                </span>
+                                <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
+                                  10 – 11 November 2026 · Four celebrations: 10th Morning (Haldi), 10th Evening (Engagement + Sundowner Sangeet), 11th (Wedding), and 11th Night ({finalPartyConfig.name}).
+                                </span>
+                              </div>
+                            </div>
 
-                        {/* Venue & Location */}
-                        <div className="flex items-start gap-3">
-                          <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
-                            <MapPin className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
-                              Venue &amp; Location
-                            </span>
-                            <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
-                              The Heritage Resort &amp; Gardens, Malshej Ghat. A scenic 3-hour drive from Mumbai and Pune.
-                            </span>
-                          </div>
-                        </div>
+                            {/* Venue & Location */}
+                            <div className="flex items-start gap-3">
+                              <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
+                                <MapPin className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
+                                  Venue &amp; Location
+                                </span>
+                                <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
+                                  The Heritage Resort &amp; Gardens, Malshej Ghat. A scenic 3-hour drive from Mumbai and Pune.
+                                </span>
+                              </div>
+                            </div>
 
-                        {/* Directions & Parking */}
-                        <div className="flex items-start gap-3">
-                          <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
-                            <Car className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
-                              Directions &amp; Parking
-                            </span>
-                            <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
-                              Complimentary on-site valet parking available. Driving directions and shuttle timings will be shared with confirmed guests.
-                            </span>
-                          </div>
-                        </div>
+                            {/* Travel & Directions */}
+                            <div className="flex items-start gap-3">
+                              <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
+                                <Car className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
+                                  Travel &amp; Directions
+                                </span>
+                                <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
+                                  Nearest airport is Mumbai (BOM) / Pune (PNQ). Valet parking is available for guests driving down.
+                                </span>
+                              </div>
+                            </div>
 
-                        {/* Dress Code */}
-                        <div className="flex items-start gap-3">
-                          <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
-                            <Shirt className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
-                              Dress Code
-                            </span>
-                            <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
-                              Indian festive attire. Haldi: Yellows &amp; florals · Sangeet: Indo-Western glam · Wedding: Traditional royal · {finalPartyConfig.name}: Cozy loungewear.
-                            </span>
-                          </div>
-                        </div>
+                            {/* Attire Guide */}
+                            <div className="flex items-start gap-3">
+                              <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
+                                <Shirt className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
+                                  Attire Guide
+                                </span>
+                                <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
+                                  Haldi: Bright Yellows &amp; Florals · Sangeet: Indo-Western Glam · Wedding: Traditional Royal · Chill Party: Cozy Loungewear.
+                                </span>
+                              </div>
+                            </div>
 
-                        {/* Gifts */}
-                        <div className="flex items-start gap-3">
-                          <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
-                            <Gift className="w-3.5 h-3.5" />
+                            {/* Gifts */}
+                            <div className="flex items-start gap-3">
+                              <div className="w-7 h-7 rounded-full bg-warm-ivory flex items-center justify-center flex-shrink-0 text-deep-maroon border border-muted-gold/30 mt-0.5">
+                                <Gift className="w-3.5 h-3.5" />
+                              </div>
+                              <div>
+                                <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
+                                  Gifts
+                                </span>
+                                <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
+                                  Your presence and blessings are our greatest gift. We kindly request no boxed gifts.
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                          <div>
-                            <span className="font-satoshi font-semibold text-[11px] uppercase tracking-wider text-deep-maroon block">
-                              Gifts
-                            </span>
-                            <span className="font-instrument italic text-sm text-warm-brown/90 leading-snug block">
-                              Your presence and blessings are our greatest gift. We kindly request no boxed gifts.
-                            </span>
-                          </div>
-                        </div>
+                        ) : (
+                          /* Standard Question Answer */
+                          <p className="text-warm-brown/85 font-instrument italic text-sm sm:text-base leading-relaxed text-left">
+                            {faq.answer}
+                          </p>
+                        )}
                       </div>
-                    ) : (
-                      /* Standard Question Answer */
-                      <p className="text-warm-brown/85 font-instrument italic text-sm sm:text-base leading-relaxed text-left">
-                        {faq.answer}
-                      </p>
-                    )}
-                  </div>
-                )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

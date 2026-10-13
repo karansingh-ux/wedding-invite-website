@@ -43,7 +43,7 @@ export function FinalScene() {
   return (
     <footer
       ref={containerRef}
-      className="relative min-h-[50vh] sm:min-h-[60vh] w-full bg-[#180E14] text-warm-ivory flex flex-col items-center justify-between py-10 sm:py-12 px-4 sm:px-6 overflow-hidden"
+      className="relative min-h-[75dvh] sm:min-h-[85dvh] w-full bg-[#180E14] text-warm-ivory flex flex-col items-center justify-between py-16 sm:py-20 px-4 sm:px-6 overflow-hidden"
       aria-label="Final Farewell Scene"
     >
       {/* Background night ambience */}

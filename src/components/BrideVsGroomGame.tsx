@@ -146,7 +146,7 @@ export function BrideVsGroomGame() {
   return (
     <section
       id="couple-quiz"
-      className="relative z-20 w-full pt-8 pb-12 sm:pt-10 sm:pb-16 px-4 sm:px-6 bg-[#FAF5EC] text-warm-brown overflow-hidden"
+      className="relative z-20 w-full min-h-[100dvh] py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF5EC] text-warm-brown overflow-hidden flex flex-col justify-center items-center"
       aria-label="Bride versus Groom Quiz and Leaderboard"
     >
       {/* 1. Subtle Botanical Transition Divider separating Secret Note from Game */}

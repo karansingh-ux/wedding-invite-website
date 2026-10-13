@@ -11,7 +11,7 @@ export function SecretNoteSection() {
     <section
       ref={containerRef}
       id="secret-note"
-      className="relative z-20 w-full pt-10 pb-8 sm:pt-14 sm:pb-10 px-4 sm:px-6 flex flex-col items-center justify-center text-center bg-warm-ivory text-warm-brown overflow-hidden"
+      className="relative z-20 w-full min-h-[100dvh] py-16 sm:py-20 px-4 sm:px-6 flex flex-col items-center justify-center text-center bg-warm-ivory text-warm-brown overflow-hidden"
       aria-label="A little note, just for you"
     >
       {/* Subtle organic paper background texture */}
